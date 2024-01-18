@@ -6,26 +6,33 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public bool tapInput = false;
+
     public int damage;
 
-    public float fireRate;
-
-    public Camera camera;
+    public float shotsPerSecond;
 
     public GameObject hitVFX;
 
-    private float nextFire;
+    private float _timeBetweenShots;
+    private FPSPlayerStats _playerStats;
+    private bool _useTapInput => tapInput ? _playerStats._PlayerInputNew.FireInputTap : _playerStats._PlayerInputNew.FireInput;
+
+    private void Awake()
+    {
+        _playerStats = GetComponentInParent<FPSPlayerStats>();
+    }
 
     private void Update()
     {
-        if (nextFire > 0)
+        if (_timeBetweenShots > 0)
         {
-            nextFire -= Time.deltaTime;
+            _timeBetweenShots -= Time.deltaTime;
         }
 
-        if (Input.GetMouseButton((int)MouseButton.Left) && nextFire <= 0) 
+        if (_useTapInput && _timeBetweenShots <= 0) 
         {
-            nextFire = 1 / fireRate;
+            _timeBetweenShots = 1 / shotsPerSecond;
 
             Fire();
         }
@@ -35,7 +42,7 @@ public class Weapon : MonoBehaviour
     //This is where the game system would watch and check the numbers
     private void Fire()
     {
-        Ray ray = new Ray(camera.transform.position, camera.transform.forward);
+        Ray ray = new Ray(_playerStats._Camera.transform.position, _playerStats._Camera.transform.forward);
 
         RaycastHit hit;
 
@@ -43,10 +50,14 @@ public class Weapon : MonoBehaviour
         {
             PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
 
-            if(hit.transform.gameObject.GetComponent<Health>()) 
+            if(hit.transform.gameObject.GetComponent<FPSPlayerHealth>()) 
             {
-                hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
-            }
+                hit.transform.gameObject.GetComponent<PhotonView>().RPC("GotHit", RpcTarget.All, damage, ray.origin.x, 
+                                                                                                         ray.origin.y,
+                                                                                                         ray.origin.z,
+                                                                                                         ray.direction.x,
+                                                                                                         ray.direction.y,
+                                                                                                         ray.direction.z);            }
         }
     }
 }

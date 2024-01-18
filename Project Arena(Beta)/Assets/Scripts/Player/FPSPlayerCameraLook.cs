@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class MouseLook : MonoBehaviour
+public class FPSPlayerCameraLook : MonoBehaviour
 {
-    public static MouseLook instance;
-
     [Header("Settings")]
     public Vector2 clampInDegrees = new Vector2(360, 180);
     public bool lockCursor = true;
@@ -22,13 +20,17 @@ public class MouseLook : MonoBehaviour
     private Vector2 _smoothMouse;
 
     private Vector2 mouseDelta;
+    private FPSPlayerStats _playerStats;
 
     [HideInInspector]
     public bool scoped;
 
+    float yRotation;
+    float xRotation;
+
     void Start()
     {
-        instance = this;
+        _playerStats = GetComponentInParent<FPSPlayerStats>();
 
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
@@ -49,14 +51,19 @@ public class MouseLook : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    void LateUpdate()
     {
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
         var targetCharacterOrientation = Quaternion.Euler(targetCharacterDirection);
 
-        // Get raw mouse input for a cleaner reading on more sensitive mice.
-        mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        if (_playerStats.useOldInput_)
+            // Get raw mouse input for a cleaner reading on more sensitive mice.
+            mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+
+        else
+            mouseDelta = _playerStats._PlayerInputNew.CameraInput;
+        
 
         // Scale input against the sensitivity setting and multiply that against the smoothing value.
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
@@ -89,5 +96,6 @@ public class MouseLook : MonoBehaviour
             var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
             transform.localRotation *= yRotation;
         }
+
     }
 }
