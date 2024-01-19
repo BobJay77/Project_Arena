@@ -7,7 +7,7 @@ using TMPro;
 public class FPSPlayerHealth : MonoBehaviour
 {
     private int _health;
-    private TMP_Text _healthText = null;
+    [SerializeField] private TMP_Text _healthText = null;
     private FPSPlayerStats _playerStats => GetComponent<FPSPlayerStats>();
 
     public void TakeDamage(int damage, Ray rayOfPreviousBullet)
@@ -26,10 +26,5 @@ public class FPSPlayerHealth : MonoBehaviour
             //watch death here.
             Destroy(gameObject);
         }
-    }
-
-    public void SetPlayerText()
-    {
-        _healthText = GetComponentInChildren<TMP_Text>();
     }
 }

@@ -78,8 +78,6 @@ public class FPSPlayerStats : MonoBehaviour
         cube_.SetActive(false);
 
         _isLocalPlayer = true;
-
-        _playerHealth.SetPlayerText();
     }
 
     [PunRPC]

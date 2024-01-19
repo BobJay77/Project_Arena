@@ -11,7 +11,7 @@ public class FPSPlayerInputNew : MonoBehaviour
     private bool _viewInput = false;
 
     [Header("Camera Movement Input")]
-    [SerializeField] private Vector2 _cameraInput;
+    private Vector2 _cameraInput;
     private float _cameraVerticalInput;
     private float _cameraHorizontalInput;
 
