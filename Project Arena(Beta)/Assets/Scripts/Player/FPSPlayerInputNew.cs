@@ -114,7 +114,7 @@ public class FPSPlayerInputNew : MonoBehaviour
             _playerControls = new PlayerControls();
 
             _playerControls.PlayerMovement.Movement.performed += i => _movementInput = i.ReadValue<Vector2>();
-            _playerControls.PlayerCamera.Movement.performed += i => _cameraInput = i.ReadValue<Vector2>().normalized;
+            _playerControls.PlayerCamera.Movement.performed += i => _cameraInput = i.ReadValue<Vector2>();
 
             #region PlayerActions
 

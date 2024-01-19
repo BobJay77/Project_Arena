@@ -6,9 +6,9 @@ public class FPSPlayerCameraLook : MonoBehaviour
     public Vector2 clampInDegrees = new Vector2(360, 180);
     public bool lockCursor = true;
     [Space]
-    private Vector2 sensitivity = new Vector2(2, 2);
+    private Vector2 sensitivity = new Vector2(.1f, .1f);
     [Space]
-    public Vector2 smoothing = new Vector2(3, 3);
+    public Vector2 smoothing = new Vector2(2, 2);
 
     [Header("First Person")]
     public GameObject characterBody;
@@ -24,9 +24,6 @@ public class FPSPlayerCameraLook : MonoBehaviour
 
     [HideInInspector]
     public bool scoped;
-
-    float yRotation;
-    float xRotation;
 
     void Start()
     {

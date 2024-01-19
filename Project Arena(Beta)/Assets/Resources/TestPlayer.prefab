@@ -1087,7 +1087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4558612391752463957}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.325}
   m_LocalScale: {x: 0.5, y: 0.15, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -1571,6 +1571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5422491865781797042}
   - component: {fileID: 4221569820468886543}
+  - component: {fileID: 755437858653526247}
   m_Layer: 0
   m_Name: arms@ak
   m_TagString: Untagged
@@ -1615,6 +1616,20 @@ MonoBehaviour:
   damage: 25
   shotsPerSecond: 20
   hitVFX: {fileID: 5112403345868107898, guid: 8d9e6d08f1486fc45b43eea6f95c7134, type: 3}
+--- !u!114 &755437858653526247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6147562222048765460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3937ba4b77e564341b8342fdd6927d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swayClamp_: 0.009
+  smoothing_: 3
 --- !u!1 &6182292825556382700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,6 +1789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOldInput_: 0
+  cube_: {fileID: 4558612391752463957}
   _maxHealth: 100
   _walkSpeed: 4
   _sprintSpeed: 14

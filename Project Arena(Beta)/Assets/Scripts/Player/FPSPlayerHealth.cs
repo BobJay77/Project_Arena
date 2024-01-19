@@ -8,6 +8,7 @@ public class FPSPlayerHealth : MonoBehaviour
 {
     private int _health;
     private TMP_Text _healthText = null;
+    private FPSPlayerStats _playerStats => GetComponent<FPSPlayerStats>();
 
     public void TakeDamage(int damage, Ray rayOfPreviousBullet)
     {
@@ -18,7 +19,10 @@ public class FPSPlayerHealth : MonoBehaviour
 
         if (_health <= 0)
         {
-            Application.Quit();
+            if (_playerStats._IsLocalPlayer)
+                RoomManager.instance.SpawnPlayer();
+
+            //Application.Quit();
             //watch death here.
             Destroy(gameObject);
         }

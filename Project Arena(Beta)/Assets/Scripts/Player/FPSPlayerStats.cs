@@ -6,6 +6,7 @@ using UnityEngine;
 public class FPSPlayerStats : MonoBehaviour
 {
     public bool useOldInput_ = false;
+    public GameObject cube_;
 
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private float _walkSpeed = 4f;
@@ -14,6 +15,8 @@ public class FPSPlayerStats : MonoBehaviour
     private FPSPlayerHealth _playerHealth;
     private FPSPlayerMovement _playerMovement;
     private FPSPlayerInputNew _playerInputNew;
+
+    private bool _isLocalPlayer;
 
     private Ray _rayOfPreviousBullet = new Ray();
 
@@ -45,6 +48,11 @@ public class FPSPlayerStats : MonoBehaviour
         get { return _playerInputNew; }
     }
 
+    public bool _IsLocalPlayer
+    {
+        get { return _isLocalPlayer; }
+    }
+
     #endregion
 
     private void Awake()
@@ -54,6 +62,8 @@ public class FPSPlayerStats : MonoBehaviour
         _playerInputNew = GetComponent<FPSPlayerInputNew>();
 
         _camera = GetComponentInChildren<Camera>();
+
+        _isLocalPlayer = false;
 
         _playerMovement.enabled = false;
         _camera.gameObject.SetActive(false);
@@ -65,6 +75,9 @@ public class FPSPlayerStats : MonoBehaviour
         _camera.gameObject.SetActive(true);
         _playerMovement.enabled = true;
         GetComponent<Rigidbody>().isKinematic = false;
+        cube_.SetActive(false);
+
+        _isLocalPlayer = true;
 
         _playerHealth.SetPlayerText();
     }
