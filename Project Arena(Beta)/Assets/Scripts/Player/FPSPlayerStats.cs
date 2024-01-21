@@ -2,19 +2,22 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FPSPlayerStats : MonoBehaviour
 {
     public bool useOldInput_ = false;
     public GameObject cube_;
-
+    
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private float _walkSpeed = 4f;
     [SerializeField] private float _sprintSpeed = 14f;
+    [SerializeField] private TMP_Text _playerNickNameUI;
 
     private FPSPlayerHealth _playerHealth;
     private FPSPlayerMovement _playerMovement;
     private FPSPlayerInputNew _playerInputNew;
+    private string _playerNickName;
 
     private bool _isLocalPlayer;
 
@@ -78,6 +81,13 @@ public class FPSPlayerStats : MonoBehaviour
         cube_.SetActive(false);
 
         _isLocalPlayer = true;
+    }
+
+    [PunRPC]
+    public void SetPlayerNickName(string name)
+    {
+        _playerNickName = name;
+        _playerNickNameUI.text = _playerNickName;
     }
 
     [PunRPC]
