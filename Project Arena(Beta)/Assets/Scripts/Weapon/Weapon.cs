@@ -34,9 +34,9 @@ public class Weapon : MonoBehaviour
     //[Range(0, 1)]
     //public float recoilPercentage = .3f;
     [Range(0, 2)]
-    public float recoverPercentage = .7f;
-    public float recoilUp = 1f;
-    public float recoilBack = 0f;
+    public float recoverPercentage_ = .7f;
+    public float recoilUp_ = 1f;
+    public float recoilBack_ = 0f;
 
     private float _recoilLength;
     private float _recoverLength;
@@ -45,7 +45,6 @@ public class Weapon : MonoBehaviour
 
     private bool _recoiling;
     private bool _recovering;
-
 
     private float _timeBetweenShots;
     private FPSPlayerStats _playerStats;
@@ -60,7 +59,7 @@ public class Weapon : MonoBehaviour
         _originalPosition = transform.localPosition;
 
         _recoilLength = 0;
-        _recoverLength = 1 / shotsPerSecond * recoverPercentage;
+        _recoverLength = 1 / shotsPerSecond * recoverPercentage_;
 
         UpdateAmmoAndMagText();
     }
@@ -72,7 +71,7 @@ public class Weapon : MonoBehaviour
             _timeBetweenShots -= Time.deltaTime;
         }
 
-        if (_useTapInput && _timeBetweenShots <= 0 && ammo_ > 0 && !_animation.isPlaying) 
+        if (_useTapInput && _timeBetweenShots <= 0 && ammo_ > 0 && !_animation.isPlaying)
         {
             _timeBetweenShots = 1 / shotsPerSecond;
 
@@ -88,15 +87,17 @@ public class Weapon : MonoBehaviour
             Reload();
         }
 
-        if(_recoiling)
+        else if (_recoiling)
         {
             Recoil();
         }
 
-        if(_recovering)
+        else if (_recovering)
         {
             Recover();
         }
+
+
 
     }
 
@@ -111,16 +112,22 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(ray.origin, ray.direction, out hit, 100f))
         {
-            PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
 
-            if(hit.transform.gameObject.GetComponent<FPSPlayerHealth>()) 
+            if (hit.collider.gameObject != _playerStats.gameObject) 
             {
-                hit.transform.gameObject.GetComponent<PhotonView>().RPC("GotHit", RpcTarget.All, damage, ray.origin.x, 
-                                                                                                         ray.origin.y,
-                                                                                                         ray.origin.z,
-                                                                                                         ray.direction.x,
-                                                                                                         ray.direction.y,
-                                                                                                         ray.direction.z);            }
+
+                PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
+
+                if (hit.transform.gameObject.GetComponent<FPSPlayerHealth>())
+                {
+                    hit.transform.gameObject.GetComponent<PhotonView>().RPC("GotHit", RpcTarget.All, damage, ray.origin.x,
+                                                                                                             ray.origin.y,
+                                                                                                             ray.origin.z,
+                                                                                                             ray.direction.x,
+                                                                                                             ray.direction.y,
+                                                                                                             ray.direction.z);
+                }
+            }
         }
     }
 
@@ -140,7 +147,7 @@ public class Weapon : MonoBehaviour
 
     void Recoil()
     {
-        Vector3 finalPosition = new Vector3(_originalPosition.x, _originalPosition.y + recoilUp, _originalPosition.z - recoilBack);
+        Vector3 finalPosition = new Vector3(_originalPosition.x, _originalPosition.y + recoilUp_, _originalPosition.z - recoilBack_);
         transform.localPosition = Vector3.SmoothDamp(transform.localPosition, finalPosition, ref _recoilVelocity, _recoilLength);
 
         if (transform.localPosition == finalPosition)

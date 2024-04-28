@@ -631,6 +631,114 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerWeaponSelect"",
+            ""id"": ""2ff0b634-16f1-47d6-9b0e-91170973a7d5"",
+            ""actions"": [
+                {
+                    ""name"": ""Number1"",
+                    ""type"": ""Button"",
+                    ""id"": ""9750b322-3b43-4de5-a1b5-8696b5fe80e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Number2"",
+                    ""type"": ""Button"",
+                    ""id"": ""43abb31e-088e-4417-bd03-3c28f4656a43"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Number3"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b336f68-5710-4c86-9b2b-3d423dbb302f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Number4"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d17e439-148f-4f98-8526-0ea4b5088196"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollWheel"",
+                    ""type"": ""Value"",
+                    ""id"": ""3eb6224b-b112-4ed0-be59-3f0f86d029a3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5769a31f-01d0-42f2-9e2c-2b71ebedb25f"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Number1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca9376b5-caec-4bda-84b5-59fbbb44a937"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Number2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2970aa2-c090-4ca0-92a8-488fd742924b"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Number3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3be0de92-d963-4c54-ba97-fe69d2b48cda"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Number4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26d6ea8b-935e-4920-8135-48c0e95b3c6f"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -663,6 +771,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerAbilities_Secondary = m_PlayerAbilities.FindAction("Secondary", throwIfNotFound: true);
         m_PlayerAbilities_Tertiary = m_PlayerAbilities.FindAction("Tertiary", throwIfNotFound: true);
         m_PlayerAbilities_Ultimate = m_PlayerAbilities.FindAction("Ultimate", throwIfNotFound: true);
+        // PlayerWeaponSelect
+        m_PlayerWeaponSelect = asset.FindActionMap("PlayerWeaponSelect", throwIfNotFound: true);
+        m_PlayerWeaponSelect_Number1 = m_PlayerWeaponSelect.FindAction("Number1", throwIfNotFound: true);
+        m_PlayerWeaponSelect_Number2 = m_PlayerWeaponSelect.FindAction("Number2", throwIfNotFound: true);
+        m_PlayerWeaponSelect_Number3 = m_PlayerWeaponSelect.FindAction("Number3", throwIfNotFound: true);
+        m_PlayerWeaponSelect_Number4 = m_PlayerWeaponSelect.FindAction("Number4", throwIfNotFound: true);
+        m_PlayerWeaponSelect_ScrollWheel = m_PlayerWeaponSelect.FindAction("ScrollWheel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1054,6 +1169,84 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerAbilitiesActions @PlayerAbilities => new PlayerAbilitiesActions(this);
+
+    // PlayerWeaponSelect
+    private readonly InputActionMap m_PlayerWeaponSelect;
+    private List<IPlayerWeaponSelectActions> m_PlayerWeaponSelectActionsCallbackInterfaces = new List<IPlayerWeaponSelectActions>();
+    private readonly InputAction m_PlayerWeaponSelect_Number1;
+    private readonly InputAction m_PlayerWeaponSelect_Number2;
+    private readonly InputAction m_PlayerWeaponSelect_Number3;
+    private readonly InputAction m_PlayerWeaponSelect_Number4;
+    private readonly InputAction m_PlayerWeaponSelect_ScrollWheel;
+    public struct PlayerWeaponSelectActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PlayerWeaponSelectActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Number1 => m_Wrapper.m_PlayerWeaponSelect_Number1;
+        public InputAction @Number2 => m_Wrapper.m_PlayerWeaponSelect_Number2;
+        public InputAction @Number3 => m_Wrapper.m_PlayerWeaponSelect_Number3;
+        public InputAction @Number4 => m_Wrapper.m_PlayerWeaponSelect_Number4;
+        public InputAction @ScrollWheel => m_Wrapper.m_PlayerWeaponSelect_ScrollWheel;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerWeaponSelect; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerWeaponSelectActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerWeaponSelectActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerWeaponSelectActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerWeaponSelectActionsCallbackInterfaces.Add(instance);
+            @Number1.started += instance.OnNumber1;
+            @Number1.performed += instance.OnNumber1;
+            @Number1.canceled += instance.OnNumber1;
+            @Number2.started += instance.OnNumber2;
+            @Number2.performed += instance.OnNumber2;
+            @Number2.canceled += instance.OnNumber2;
+            @Number3.started += instance.OnNumber3;
+            @Number3.performed += instance.OnNumber3;
+            @Number3.canceled += instance.OnNumber3;
+            @Number4.started += instance.OnNumber4;
+            @Number4.performed += instance.OnNumber4;
+            @Number4.canceled += instance.OnNumber4;
+            @ScrollWheel.started += instance.OnScrollWheel;
+            @ScrollWheel.performed += instance.OnScrollWheel;
+            @ScrollWheel.canceled += instance.OnScrollWheel;
+        }
+
+        private void UnregisterCallbacks(IPlayerWeaponSelectActions instance)
+        {
+            @Number1.started -= instance.OnNumber1;
+            @Number1.performed -= instance.OnNumber1;
+            @Number1.canceled -= instance.OnNumber1;
+            @Number2.started -= instance.OnNumber2;
+            @Number2.performed -= instance.OnNumber2;
+            @Number2.canceled -= instance.OnNumber2;
+            @Number3.started -= instance.OnNumber3;
+            @Number3.performed -= instance.OnNumber3;
+            @Number3.canceled -= instance.OnNumber3;
+            @Number4.started -= instance.OnNumber4;
+            @Number4.performed -= instance.OnNumber4;
+            @Number4.canceled -= instance.OnNumber4;
+            @ScrollWheel.started -= instance.OnScrollWheel;
+            @ScrollWheel.performed -= instance.OnScrollWheel;
+            @ScrollWheel.canceled -= instance.OnScrollWheel;
+        }
+
+        public void RemoveCallbacks(IPlayerWeaponSelectActions instance)
+        {
+            if (m_Wrapper.m_PlayerWeaponSelectActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerWeaponSelectActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerWeaponSelectActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerWeaponSelectActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerWeaponSelectActions @PlayerWeaponSelect => new PlayerWeaponSelectActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -1086,5 +1279,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSecondary(InputAction.CallbackContext context);
         void OnTertiary(InputAction.CallbackContext context);
         void OnUltimate(InputAction.CallbackContext context);
+    }
+    public interface IPlayerWeaponSelectActions
+    {
+        void OnNumber1(InputAction.CallbackContext context);
+        void OnNumber2(InputAction.CallbackContext context);
+        void OnNumber3(InputAction.CallbackContext context);
+        void OnNumber4(InputAction.CallbackContext context);
+        void OnScrollWheel(InputAction.CallbackContext context);
     }
 }

@@ -43,7 +43,7 @@ public class FPSPlayerMovement : MonoBehaviour
             {
                 _rb.AddForce(CalculateMovement(sprinting ? _playerStats._SprintSpeed : _playerStats._WalkSpeed), ForceMode.VelocityChange);
             }
-             
+
             else
             {
                 Vector3 newVelocity = _rb.velocity;

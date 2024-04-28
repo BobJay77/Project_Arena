@@ -609,6 +609,114 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "PlayerWeaponSelect",
+            "id": "2ff0b634-16f1-47d6-9b0e-91170973a7d5",
+            "actions": [
+                {
+                    "name": "Number1",
+                    "type": "Button",
+                    "id": "9750b322-3b43-4de5-a1b5-8696b5fe80e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Number2",
+                    "type": "Button",
+                    "id": "43abb31e-088e-4417-bd03-3c28f4656a43",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Number3",
+                    "type": "Button",
+                    "id": "2b336f68-5710-4c86-9b2b-3d423dbb302f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Number4",
+                    "type": "Button",
+                    "id": "3d17e439-148f-4f98-8526-0ea4b5088196",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollWheel",
+                    "type": "Value",
+                    "id": "3eb6224b-b112-4ed0-be59-3f0f86d029a3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5769a31f-01d0-42f2-9e2c-2b71ebedb25f",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Number1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca9376b5-caec-4bda-84b5-59fbbb44a937",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Number2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2970aa2-c090-4ca0-92a8-488fd742924b",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Number3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3be0de92-d963-4c54-ba97-fe69d2b48cda",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Number4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26d6ea8b-935e-4920-8135-48c0e95b3c6f",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollWheel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

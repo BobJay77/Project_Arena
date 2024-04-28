@@ -5,8 +5,8 @@ using UnityEngine;
 public class WeaponSway : MonoBehaviour
 {
     [Header("Settings")]
-    public float swayClamp_ = 0.009f;
-    public float smoothing_ = 3f;
+    public float swayClamp_ = 0.1f;
+    public float smoothing_ = 1f;
 
     private Vector3 origin;
     private FPSPlayerStats _playerStats;
@@ -17,13 +17,13 @@ public class WeaponSway : MonoBehaviour
         _playerStats = GetComponentInParent<FPSPlayerStats>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Vector2 input = _playerStats.useOldInput_ ? new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) 
+        Vector2 input = _playerStats.useOldInput_ ? new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"))
                          : _playerStats._PlayerInputNew.CameraInput;
 
-        input.x = Mathf.Clamp(input.x, - swayClamp_, swayClamp_);
-        input.y = Mathf.Clamp(input.y, - swayClamp_, swayClamp_);
+        input.x = Mathf.Clamp(input.x, -swayClamp_, swayClamp_);
+        input.y = Mathf.Clamp(input.y, -swayClamp_, swayClamp_);
 
         Vector3 target = new Vector3(-input.x, -input.y, 0);
 
