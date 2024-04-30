@@ -10,8 +10,8 @@ public class FPSPlayerMovement : MonoBehaviour
 
     public float airControl_ = 0.5f;
 
-    private bool sprinting => _playerStats.useOldInput_ ? Input.GetKey(_playerInputOld._SprintingKey) : _playerInputNew.SprintInput;
-    private bool jumping => _playerStats.useOldInput_ ? Input.GetKey(_playerInputOld._JumpingKey) : _playerInputNew.JumpInput;
+    private bool sprinting => _playerStats.useOldInput_ ? Input.GetKey(_playerInputOld._SprintingKey) : _playerInputNew._SprintInput;
+    private bool jumping => _playerStats.useOldInput_ ? Input.GetKey(_playerInputOld._JumpingKey) : _playerInputNew._JumpInput;
 
     private bool grounded = false;
 
@@ -39,7 +39,7 @@ public class FPSPlayerMovement : MonoBehaviour
                 _rb.velocity = new Vector3(_rb.velocity.x, jumpHeight_, _rb.velocity.z);
             }
 
-            else if (_playerInputNew.MovementInput.magnitude > 0.5f)
+            else if (_playerInputNew._MovementInput.magnitude > 0.5f)
             {
                 _rb.AddForce(CalculateMovement(sprinting ? _playerStats._SprintSpeed : _playerStats._WalkSpeed), ForceMode.VelocityChange);
             }
@@ -57,7 +57,7 @@ public class FPSPlayerMovement : MonoBehaviour
 
         else
         {
-            if (_playerInputNew.MovementInput.magnitude > 0.5f)
+            if (_playerInputNew._MovementInput.magnitude > 0.5f)
             {
                 _rb.AddForce(CalculateMovement(sprinting ? _playerStats._SprintSpeed * airControl_ : _playerStats._WalkSpeed * airControl_), ForceMode.VelocityChange);
             }
@@ -78,14 +78,14 @@ public class FPSPlayerMovement : MonoBehaviour
 
     private Vector3 CalculateMovement(float _speed)
     {
-        Vector3 targetVelocity = new Vector3(_playerInputNew.MovementInput.x, 0, _playerInputNew.MovementInput.y);
+        Vector3 targetVelocity = new Vector3(_playerInputNew._MovementInput.x, 0, _playerInputNew._MovementInput.y);
         targetVelocity = transform.TransformDirection(targetVelocity);
 
         targetVelocity *= _speed;
 
         Vector3 velocity = _rb.velocity;
 
-        if (_playerInputNew.MovementInput.magnitude > 0.5)
+        if (_playerInputNew._MovementInput.magnitude > 0.5)
         {
             Vector3 velocityChange = targetVelocity - velocity;
             

@@ -59,7 +59,7 @@ public class FPSPlayerCameraLook : MonoBehaviour
             mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
         else
-            mouseDelta = _playerStats._PlayerInputNew.CameraInput;
+            mouseDelta = _playerStats._PlayerInputNew._CameraInput;
         
 
         // Scale input against the sensitivity setting and multiply that against the smoothing value.

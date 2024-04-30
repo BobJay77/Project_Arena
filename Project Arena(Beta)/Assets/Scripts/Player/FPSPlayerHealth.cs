@@ -21,7 +21,7 @@ public class FPSPlayerHealth : MonoBehaviour
         if (_health <= 0)
         {
             if (_playerStats._IsLocalPlayer)
-                RoomManager.instance.SpawnPlayer();
+                RoomManager._Instance.SpawnPlayer();
 
             //Application.Quit();
             //watch death here.

@@ -484,6 +484,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LeaderBoard",
+                    "type": "Button",
+                    "id": "4ebeede2-d286-43b7-980f-a69b95632cf1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -517,6 +526,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5bab0d95-9920-4702-a308-0086f2ddbfca",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeaderBoard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -615,7 +635,7 @@
             "id": "2ff0b634-16f1-47d6-9b0e-91170973a7d5",
             "actions": [
                 {
-                    "name": "Number1",
+                    "name": "Primary",
                     "type": "Button",
                     "id": "9750b322-3b43-4de5-a1b5-8696b5fe80e9",
                     "expectedControlType": "Button",
@@ -624,7 +644,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Number2",
+                    "name": "Secondary",
                     "type": "Button",
                     "id": "43abb31e-088e-4417-bd03-3c28f4656a43",
                     "expectedControlType": "Button",
@@ -633,7 +653,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Number3",
+                    "name": "Tertiary",
                     "type": "Button",
                     "id": "2b336f68-5710-4c86-9b2b-3d423dbb302f",
                     "expectedControlType": "Button",
@@ -642,7 +662,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Number4",
+                    "name": "Other",
                     "type": "Button",
                     "id": "3d17e439-148f-4f98-8526-0ea4b5088196",
                     "expectedControlType": "Button",
@@ -652,12 +672,12 @@
                 },
                 {
                     "name": "ScrollWheel",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "3eb6224b-b112-4ed0-be59-3f0f86d029a3",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -668,7 +688,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Number1",
+                    "action": "Primary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -679,7 +699,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Number2",
+                    "action": "Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -690,7 +710,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Number3",
+                    "action": "Tertiary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -701,7 +721,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Number4",
+                    "action": "Other",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

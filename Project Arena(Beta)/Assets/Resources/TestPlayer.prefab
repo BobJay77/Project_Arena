@@ -3827,6 +3827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd700f739e3fa2f4f930268b228ce689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scrollWheelInput: {x: 0, y: 0}
 --- !u!114 &-4718385460346020312
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -35,72 +35,136 @@ public class FPSPlayerInputNew : MonoBehaviour
     private bool _invetoryInput = false;
     private bool _mapInput = false;
     private bool _pauseInput = false;
+    private bool _leaderBoardInput = false;
+
+    [Header("Player Ability Input")]
+    private bool _primaryAbiliyInput = false;
+    private bool _secondaryAbiliyInput = false;
+    private bool _tertiaryAbiliyInput = false;
+    private bool _ultimateAbiliyInput = false;
+
+    [Header("Player Weapon Select Input")]
+    private bool _primaryWeaponSelectInput = false;
+    private bool _secondaryWeaponSelectInput = false;
+    private bool _tertiaryWeaponSelectInput = false;
+    private bool _otherWeaponSelectInput = false;
+    [SerializeField] private Vector2 _scrollWheelInput;
 
     #region Properties
 
-    public Vector2 MovementInput
+    public Vector2 _MovementInput
     {
         get { return _movementInput; }
     }
 
-    public Vector2 CameraInput
+    public Vector2 _CameraInput
     {
         get { return _cameraInput; }
     }
 
-    public float MoveAmout
+    public float _MoveAmout
     {
         get { return _moveAmount; }
     }
 
-    public bool SprintInput
+    public bool _SprintInput
     {
         get { return _sprintInput; }
     }
 
-    public bool FireInput
+    public bool _FireInput
     {
         get { return _fireInput; }
     }
 
-    public bool FireInputTap
+    public bool _FireInputTap
     {
         get { return _playerControls.PlayerActions.Fire.WasPressedThisFrame(); }
     }
 
-    public bool AltFireInput
+    public bool _AltFireInput
     {
         get { return _altFireInput; }
     }
 
-    public bool AltFireInputTap
+    public bool _AltFireInputTap
     {
         get { return _playerControls.PlayerActions.AltFire.WasPressedThisFrame(); }
     }
 
-    public bool ReloadInput
+    public bool _ReloadInput
     {
         get { return _reloadInput; }
     }
 
-    public bool JumpInput
+    public bool _JumpInput
     {
         get { return _jumpInput; }
     }
 
-    public bool CrouchInput
+    public bool _CrouchInput
     {
         get { return _crouchInput; }
     }
 
-    public bool DropInput
+    public bool _DropInput
     {
         get { return _dropInput; }
     }
 
-    public bool InteractInput
+    public bool _InteractInput
     {
         get { return _interactInput; }
+    }
+
+    public bool _LeaderBoardInput
+    {
+        get { return _leaderBoardInput; }
+    }
+
+    public bool _PrimaryAbiltyInput
+    {
+        get { return _primaryAbiliyInput; }
+    }
+
+    public bool _SecondaryAbiltyInput
+    {
+        get { return _secondaryAbiliyInput; }
+    }
+
+    public bool _TertiaryAbiltyInput
+    {
+        get { return _tertiaryAbiliyInput; }
+    }
+
+    public bool _UltimateAbiltyInput
+    {
+        get { return _ultimateAbiliyInput; }
+    }
+
+    public bool _PrimaryWeaponSelectInput
+    {
+        get { return _primaryWeaponSelectInput; }
+    }
+
+    public bool _SecondaryWeaponSelectInput
+    {
+        get { return _secondaryWeaponSelectInput; }
+    }
+
+    public bool _TertiaryWeaponSelectInput
+    {
+        get { return _tertiaryWeaponSelectInput; }
+    }
+
+    public bool _OtherWeaponSelectInput
+    {
+        get { return _otherWeaponSelectInput; }
+    }
+
+    public float _ScrollWheelInput
+    {
+        get { return _scrollWheelInput.y; }
     }
 
     #endregion
@@ -113,8 +177,12 @@ public class FPSPlayerInputNew : MonoBehaviour
         {
             _playerControls = new PlayerControls();
 
+            #region PlayerMovement
+
             _playerControls.PlayerMovement.Movement.performed += i => _movementInput = i.ReadValue<Vector2>();
             _playerControls.PlayerCamera.Movement.performed += i => _cameraInput = i.ReadValue<Vector2>();
+
+            #endregion
 
             #region PlayerActions
 
@@ -144,16 +212,60 @@ public class FPSPlayerInputNew : MonoBehaviour
 
             #endregion
 
+            #region PlayerCamera
+
             _playerControls.PlayerCamera.View.performed += i => _viewInput = true;
             _playerControls.PlayerCamera.View.canceled += i => _viewInput = false;
+
+            #endregion
+
+            #region PlayerUI
+
+            _playerControls.PlayerUI.LeaderBoard.performed += i => _leaderBoardInput = true;
+            _playerControls.PlayerUI.LeaderBoard.canceled += i => _leaderBoardInput = false;
 
             //playerControls.PlayerUI.Inventory.performed += i => HandleInventory();
 
             //playerControls.PlayerUI.Map.performed += i => HandleMap();
 
             //playerControls.PlayerUI.Pause.performed += i => HandlePause();
-        }
 
+            #endregion
+
+            #region PlayerAbility
+
+            _playerControls.PlayerAbilities.Primary.performed += i => _primaryAbiliyInput = true;
+            _playerControls.PlayerAbilities.Primary.canceled += i => _primaryAbiliyInput = false;
+
+            _playerControls.PlayerAbilities.Secondary.performed += i => _secondaryAbiliyInput = true;
+            _playerControls.PlayerAbilities.Secondary.canceled += i => _secondaryAbiliyInput = false;
+
+            _playerControls.PlayerAbilities.Tertiary.performed += i => _tertiaryAbiliyInput = true;
+            _playerControls.PlayerAbilities.Tertiary.canceled += i => _tertiaryAbiliyInput = false;
+
+            _playerControls.PlayerAbilities.Ultimate.performed += i => _ultimateAbiliyInput = true;
+            _playerControls.PlayerAbilities.Ultimate.canceled += i => _ultimateAbiliyInput = false;
+
+            #endregion
+
+            #region PlayerWeaponSelect
+
+            _playerControls.PlayerWeaponSelect.Primary.performed += i => _primaryWeaponSelectInput = true;
+            _playerControls.PlayerWeaponSelect.Primary.canceled += i => _primaryWeaponSelectInput = false;
+
+            _playerControls.PlayerWeaponSelect.Secondary.performed += i => _secondaryWeaponSelectInput = true;
+            _playerControls.PlayerWeaponSelect.Secondary.canceled += i => _secondaryWeaponSelectInput = false;
+
+            _playerControls.PlayerWeaponSelect.Tertiary.performed += i => _tertiaryWeaponSelectInput = true;
+            _playerControls.PlayerWeaponSelect.Tertiary.canceled += i => _tertiaryWeaponSelectInput = false;
+
+            _playerControls.PlayerWeaponSelect.Other.performed += i => _otherWeaponSelectInput = true;
+            _playerControls.PlayerWeaponSelect.Other.canceled += i => _otherWeaponSelectInput = false;
+
+            _playerControls.PlayerWeaponSelect.ScrollWheel.performed += i => _scrollWheelInput = i.ReadValue<Vector2>();
+
+            #endregion
+        }
         _playerControls.Enable();
     }
 

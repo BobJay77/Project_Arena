@@ -20,7 +20,7 @@ public class WeaponSway : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 input = _playerStats.useOldInput_ ? new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"))
-                         : _playerStats._PlayerInputNew.CameraInput;
+                         : _playerStats._PlayerInputNew._CameraInput;
 
         input.x = Mathf.Clamp(input.x, -swayClamp_, swayClamp_);
         input.y = Mathf.Clamp(input.y, -swayClamp_, swayClamp_);

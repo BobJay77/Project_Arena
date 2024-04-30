@@ -49,8 +49,8 @@ public class Weapon : MonoBehaviour
 
     private float _timeBetweenShots;
     private FPSPlayerStats _playerStats;
-    private bool _useTapInput => tapInput ? _playerStats._PlayerInputNew.FireInputTap : _playerStats._PlayerInputNew.FireInput;
-    private bool _reloading => _playerStats._PlayerInputNew.ReloadInput;
+    private bool _useTapInput => tapInput ? _playerStats._PlayerInputNew._FireInputTap : _playerStats._PlayerInputNew._FireInput;
+    private bool _reloading => _playerStats._PlayerInputNew._ReloadInput;
 
     private void Awake()
     {

@@ -5,9 +5,8 @@ using Photon.Pun;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
-
     //Change these to not be public and add properties for proper set up
-    public static RoomManager instance;
+    private static RoomManager _instance;
 
     public GameObject player;
 
@@ -21,9 +20,24 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     private string _nickName = "unnamed";
 
+    public static RoomManager _Instance
+    {
+        get { return _instance; }
+    }
+
     private void Awake()
     {
-        instance = this;
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(_instance);
     }
 
     public override void OnConnectedToMaster()

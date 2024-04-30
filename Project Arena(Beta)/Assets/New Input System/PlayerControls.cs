@@ -506,6 +506,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeaderBoard"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ebeede2-d286-43b7-980f-a69b95632cf1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -539,6 +548,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bab0d95-9920-4702-a308-0086f2ddbfca"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeaderBoard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -637,7 +657,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""2ff0b634-16f1-47d6-9b0e-91170973a7d5"",
             ""actions"": [
                 {
-                    ""name"": ""Number1"",
+                    ""name"": ""Primary"",
                     ""type"": ""Button"",
                     ""id"": ""9750b322-3b43-4de5-a1b5-8696b5fe80e9"",
                     ""expectedControlType"": ""Button"",
@@ -646,7 +666,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Number2"",
+                    ""name"": ""Secondary"",
                     ""type"": ""Button"",
                     ""id"": ""43abb31e-088e-4417-bd03-3c28f4656a43"",
                     ""expectedControlType"": ""Button"",
@@ -655,7 +675,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Number3"",
+                    ""name"": ""Tertiary"",
                     ""type"": ""Button"",
                     ""id"": ""2b336f68-5710-4c86-9b2b-3d423dbb302f"",
                     ""expectedControlType"": ""Button"",
@@ -664,7 +684,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Number4"",
+                    ""name"": ""Other"",
                     ""type"": ""Button"",
                     ""id"": ""3d17e439-148f-4f98-8526-0ea4b5088196"",
                     ""expectedControlType"": ""Button"",
@@ -674,12 +694,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""ScrollWheel"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""3eb6224b-b112-4ed0-be59-3f0f86d029a3"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -690,7 +710,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Number1"",
+                    ""action"": ""Primary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -701,7 +721,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Number2"",
+                    ""action"": ""Secondary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -712,7 +732,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Number3"",
+                    ""action"": ""Tertiary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -723,7 +743,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Number4"",
+                    ""action"": ""Other"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -765,6 +785,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerUI_Inventory = m_PlayerUI.FindAction("Inventory", throwIfNotFound: true);
         m_PlayerUI_Map = m_PlayerUI.FindAction("Map", throwIfNotFound: true);
         m_PlayerUI_Back = m_PlayerUI.FindAction("Back", throwIfNotFound: true);
+        m_PlayerUI_LeaderBoard = m_PlayerUI.FindAction("LeaderBoard", throwIfNotFound: true);
         // PlayerAbilities
         m_PlayerAbilities = asset.FindActionMap("PlayerAbilities", throwIfNotFound: true);
         m_PlayerAbilities_Primary = m_PlayerAbilities.FindAction("Primary", throwIfNotFound: true);
@@ -773,10 +794,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerAbilities_Ultimate = m_PlayerAbilities.FindAction("Ultimate", throwIfNotFound: true);
         // PlayerWeaponSelect
         m_PlayerWeaponSelect = asset.FindActionMap("PlayerWeaponSelect", throwIfNotFound: true);
-        m_PlayerWeaponSelect_Number1 = m_PlayerWeaponSelect.FindAction("Number1", throwIfNotFound: true);
-        m_PlayerWeaponSelect_Number2 = m_PlayerWeaponSelect.FindAction("Number2", throwIfNotFound: true);
-        m_PlayerWeaponSelect_Number3 = m_PlayerWeaponSelect.FindAction("Number3", throwIfNotFound: true);
-        m_PlayerWeaponSelect_Number4 = m_PlayerWeaponSelect.FindAction("Number4", throwIfNotFound: true);
+        m_PlayerWeaponSelect_Primary = m_PlayerWeaponSelect.FindAction("Primary", throwIfNotFound: true);
+        m_PlayerWeaponSelect_Secondary = m_PlayerWeaponSelect.FindAction("Secondary", throwIfNotFound: true);
+        m_PlayerWeaponSelect_Tertiary = m_PlayerWeaponSelect.FindAction("Tertiary", throwIfNotFound: true);
+        m_PlayerWeaponSelect_Other = m_PlayerWeaponSelect.FindAction("Other", throwIfNotFound: true);
         m_PlayerWeaponSelect_ScrollWheel = m_PlayerWeaponSelect.FindAction("ScrollWheel", throwIfNotFound: true);
     }
 
@@ -1044,6 +1065,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerUI_Inventory;
     private readonly InputAction m_PlayerUI_Map;
     private readonly InputAction m_PlayerUI_Back;
+    private readonly InputAction m_PlayerUI_LeaderBoard;
     public struct PlayerUIActions
     {
         private @PlayerControls m_Wrapper;
@@ -1051,6 +1073,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Inventory => m_Wrapper.m_PlayerUI_Inventory;
         public InputAction @Map => m_Wrapper.m_PlayerUI_Map;
         public InputAction @Back => m_Wrapper.m_PlayerUI_Back;
+        public InputAction @LeaderBoard => m_Wrapper.m_PlayerUI_LeaderBoard;
         public InputActionMap Get() { return m_Wrapper.m_PlayerUI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1069,6 +1092,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Back.started += instance.OnBack;
             @Back.performed += instance.OnBack;
             @Back.canceled += instance.OnBack;
+            @LeaderBoard.started += instance.OnLeaderBoard;
+            @LeaderBoard.performed += instance.OnLeaderBoard;
+            @LeaderBoard.canceled += instance.OnLeaderBoard;
         }
 
         private void UnregisterCallbacks(IPlayerUIActions instance)
@@ -1082,6 +1108,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Back.started -= instance.OnBack;
             @Back.performed -= instance.OnBack;
             @Back.canceled -= instance.OnBack;
+            @LeaderBoard.started -= instance.OnLeaderBoard;
+            @LeaderBoard.performed -= instance.OnLeaderBoard;
+            @LeaderBoard.canceled -= instance.OnLeaderBoard;
         }
 
         public void RemoveCallbacks(IPlayerUIActions instance)
@@ -1173,19 +1202,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // PlayerWeaponSelect
     private readonly InputActionMap m_PlayerWeaponSelect;
     private List<IPlayerWeaponSelectActions> m_PlayerWeaponSelectActionsCallbackInterfaces = new List<IPlayerWeaponSelectActions>();
-    private readonly InputAction m_PlayerWeaponSelect_Number1;
-    private readonly InputAction m_PlayerWeaponSelect_Number2;
-    private readonly InputAction m_PlayerWeaponSelect_Number3;
-    private readonly InputAction m_PlayerWeaponSelect_Number4;
+    private readonly InputAction m_PlayerWeaponSelect_Primary;
+    private readonly InputAction m_PlayerWeaponSelect_Secondary;
+    private readonly InputAction m_PlayerWeaponSelect_Tertiary;
+    private readonly InputAction m_PlayerWeaponSelect_Other;
     private readonly InputAction m_PlayerWeaponSelect_ScrollWheel;
     public struct PlayerWeaponSelectActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerWeaponSelectActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Number1 => m_Wrapper.m_PlayerWeaponSelect_Number1;
-        public InputAction @Number2 => m_Wrapper.m_PlayerWeaponSelect_Number2;
-        public InputAction @Number3 => m_Wrapper.m_PlayerWeaponSelect_Number3;
-        public InputAction @Number4 => m_Wrapper.m_PlayerWeaponSelect_Number4;
+        public InputAction @Primary => m_Wrapper.m_PlayerWeaponSelect_Primary;
+        public InputAction @Secondary => m_Wrapper.m_PlayerWeaponSelect_Secondary;
+        public InputAction @Tertiary => m_Wrapper.m_PlayerWeaponSelect_Tertiary;
+        public InputAction @Other => m_Wrapper.m_PlayerWeaponSelect_Other;
         public InputAction @ScrollWheel => m_Wrapper.m_PlayerWeaponSelect_ScrollWheel;
         public InputActionMap Get() { return m_Wrapper.m_PlayerWeaponSelect; }
         public void Enable() { Get().Enable(); }
@@ -1196,18 +1225,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerWeaponSelectActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerWeaponSelectActionsCallbackInterfaces.Add(instance);
-            @Number1.started += instance.OnNumber1;
-            @Number1.performed += instance.OnNumber1;
-            @Number1.canceled += instance.OnNumber1;
-            @Number2.started += instance.OnNumber2;
-            @Number2.performed += instance.OnNumber2;
-            @Number2.canceled += instance.OnNumber2;
-            @Number3.started += instance.OnNumber3;
-            @Number3.performed += instance.OnNumber3;
-            @Number3.canceled += instance.OnNumber3;
-            @Number4.started += instance.OnNumber4;
-            @Number4.performed += instance.OnNumber4;
-            @Number4.canceled += instance.OnNumber4;
+            @Primary.started += instance.OnPrimary;
+            @Primary.performed += instance.OnPrimary;
+            @Primary.canceled += instance.OnPrimary;
+            @Secondary.started += instance.OnSecondary;
+            @Secondary.performed += instance.OnSecondary;
+            @Secondary.canceled += instance.OnSecondary;
+            @Tertiary.started += instance.OnTertiary;
+            @Tertiary.performed += instance.OnTertiary;
+            @Tertiary.canceled += instance.OnTertiary;
+            @Other.started += instance.OnOther;
+            @Other.performed += instance.OnOther;
+            @Other.canceled += instance.OnOther;
             @ScrollWheel.started += instance.OnScrollWheel;
             @ScrollWheel.performed += instance.OnScrollWheel;
             @ScrollWheel.canceled += instance.OnScrollWheel;
@@ -1215,18 +1244,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IPlayerWeaponSelectActions instance)
         {
-            @Number1.started -= instance.OnNumber1;
-            @Number1.performed -= instance.OnNumber1;
-            @Number1.canceled -= instance.OnNumber1;
-            @Number2.started -= instance.OnNumber2;
-            @Number2.performed -= instance.OnNumber2;
-            @Number2.canceled -= instance.OnNumber2;
-            @Number3.started -= instance.OnNumber3;
-            @Number3.performed -= instance.OnNumber3;
-            @Number3.canceled -= instance.OnNumber3;
-            @Number4.started -= instance.OnNumber4;
-            @Number4.performed -= instance.OnNumber4;
-            @Number4.canceled -= instance.OnNumber4;
+            @Primary.started -= instance.OnPrimary;
+            @Primary.performed -= instance.OnPrimary;
+            @Primary.canceled -= instance.OnPrimary;
+            @Secondary.started -= instance.OnSecondary;
+            @Secondary.performed -= instance.OnSecondary;
+            @Secondary.canceled -= instance.OnSecondary;
+            @Tertiary.started -= instance.OnTertiary;
+            @Tertiary.performed -= instance.OnTertiary;
+            @Tertiary.canceled -= instance.OnTertiary;
+            @Other.started -= instance.OnOther;
+            @Other.performed -= instance.OnOther;
+            @Other.canceled -= instance.OnOther;
             @ScrollWheel.started -= instance.OnScrollWheel;
             @ScrollWheel.performed -= instance.OnScrollWheel;
             @ScrollWheel.canceled -= instance.OnScrollWheel;
@@ -1272,6 +1301,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInventory(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnLeaderBoard(InputAction.CallbackContext context);
     }
     public interface IPlayerAbilitiesActions
     {
@@ -1282,10 +1312,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IPlayerWeaponSelectActions
     {
-        void OnNumber1(InputAction.CallbackContext context);
-        void OnNumber2(InputAction.CallbackContext context);
-        void OnNumber3(InputAction.CallbackContext context);
-        void OnNumber4(InputAction.CallbackContext context);
+        void OnPrimary(InputAction.CallbackContext context);
+        void OnSecondary(InputAction.CallbackContext context);
+        void OnTertiary(InputAction.CallbackContext context);
+        void OnOther(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
     }
 }
