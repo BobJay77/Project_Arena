@@ -6,6 +6,10 @@ public class FPSPlayerHealth : MonoBehaviour
     private int _health;
     [SerializeField] private TMP_Text _healthText = null;
     private FPSPlayerStats _playerStats => GetComponent<FPSPlayerStats>();
+    public int _Health
+    {
+        get { return _health; }
+    } 
 
     public void TakeDamage(int damage, Ray rayOfPreviousBullet)
     {

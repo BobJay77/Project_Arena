@@ -61,6 +61,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         _player.GetComponent<FPSPlayerStats>().IsLocalPlayer();
 
         _player.GetComponent<PhotonView>().RPC("SetPlayerNickName", RpcTarget.AllBuffered, _nickName);
+        PhotonNetwork.LocalPlayer.NickName = _nickName;
     }
 
     public void ChangeNickName(string name)

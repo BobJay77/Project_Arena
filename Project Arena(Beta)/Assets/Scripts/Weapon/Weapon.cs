@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using Photon.Pun.UtilityScripts;
 
 public class Weapon : MonoBehaviour
 {
@@ -96,9 +97,6 @@ public class Weapon : MonoBehaviour
         {
             Recover();
         }
-
-
-
     }
 
     private void Fire()
@@ -126,6 +124,11 @@ public class Weapon : MonoBehaviour
                                                                                                              ray.direction.x,
                                                                                                              ray.direction.y,
                                                                                                              ray.direction.z);
+
+                    if(damage > hit.transform.gameObject.GetComponent<FPSPlayerHealth>()._Health)
+                    {
+                        PhotonNetwork.LocalPlayer.AddScore(1);
+                    }
                 }
             }
         }
