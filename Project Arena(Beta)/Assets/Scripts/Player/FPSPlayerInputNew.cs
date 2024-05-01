@@ -221,9 +221,16 @@ public class FPSPlayerInputNew : MonoBehaviour
 
             #region PlayerUI
 
-            _playerControls.PlayerUI.LeaderBoard.performed += i => _leaderBoardInput = true;
-            _playerControls.PlayerUI.LeaderBoard.canceled += i => _leaderBoardInput = false;
-
+            _playerControls.PlayerUI.LeaderBoard.performed += i =>
+            {
+                _leaderBoardInput = true;
+                LeaderBoard._Instance.ShowLeaderBoard(_leaderBoardInput);
+            };
+            _playerControls.PlayerUI.LeaderBoard.canceled += i =>
+            {
+                _leaderBoardInput = false;
+                LeaderBoard._Instance.ShowLeaderBoard(_leaderBoardInput);
+            };
             //playerControls.PlayerUI.Inventory.performed += i => HandleInventory();
 
             //playerControls.PlayerUI.Map.performed += i => HandleMap();

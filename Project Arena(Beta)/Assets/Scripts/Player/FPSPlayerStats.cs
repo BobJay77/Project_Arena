@@ -75,8 +75,6 @@ public class FPSPlayerStats : MonoBehaviour
 
     public void IsLocalPlayer()
     {
-        LeaderBoard._Instance._PlayerStats = this;
-
         _camera.gameObject.SetActive(true);
         _playerMovement.enabled = true;
         
